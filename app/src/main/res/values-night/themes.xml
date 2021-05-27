@@ -13,8 +13,9 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?android:attr/colorBackground</item>
-        <item name="android:navigationBarColor">?android:attr/colorBackground</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
     <color name="cardBg">#1C1C1C</color>
+    <color name="strokeColor">#222222</color>
+    <color name="ripple">#575757</color>
 </resources>

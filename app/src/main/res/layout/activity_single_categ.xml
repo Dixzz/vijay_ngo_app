@@ -11,18 +11,34 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             style="@style/Widget.MaterialComponents.TabLayout"
-            app:tabTextAppearance="@style/tabTitle"
-            app:tabIndicatorHeight="2dp"
             android:layout_width="match_parent"
-            app:tabUnboundedRipple="true"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
-            app:tabIndicatorAnimationMode="elastic" />
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicatorColor="?android:attr/textColorPrimary"
+            app:tabIndicatorHeight="2dp"
+            app:tabTextAppearance="@style/tabTitle"
+            app:tabUnboundedRipple="true" />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/pager"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:elevation="0dp" />
+            android:layout_height="match_parent">
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/indic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="1dp"
+                android:visibility="invisible"
+                android:indeterminate="false"
+                app:indicatorColor="@color/colorPrimary"
+                app:trackThickness="2dp" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="0dp" />
+        </FrameLayout>
     </LinearLayout>
 </layout>

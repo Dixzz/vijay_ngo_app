@@ -33,8 +33,8 @@ public class CategoryUtil {
 
         //Education
         catTwo.add(new Pair<>("Schools", new EducationFragment()));
-        catTwo.add(new Pair<>("College", new BlankFragment()));
-        catTwo.add(new Pair<>("Classes", new BlankFragment()));
+        catTwo.add(new Pair<>("College", new EducationFragment()));
+        catTwo.add(new Pair<>("Classes", new EducationFragment()));
 
         items.add(catOne);
         items.add(catTwo);

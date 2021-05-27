@@ -13,21 +13,53 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import org.vijaysetu.data.CategoryUtil;
 import org.vijaysetu.databinding.ActivitySingleCategBinding;
-import org.vijaysetu.frags.BlankFragment;
+import org.vijaysetu.utils.CommonUtils;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class SingleCatActivity extends AppCompatActivity {
 
-    ActivitySingleCategBinding binding;
+    public ActivitySingleCategBinding binding;
     int index;
+    private static final String TAG = "SingleCatActivity";
+    public List<List<EducationHolder>> educationHolderArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
-        //Init views
+        educationHolderArrayList = new ArrayList<>();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_single_categ);
+
+        ExecutorService executorService = null;
+
+        try {
+            executorService = Executors.newCachedThreadPool();
+            executorService.execute(() -> educationHolderArrayList.addAll(CommonUtils.addEducData(educationHolderArrayList)));
+        } finally {
+            if (executorService != null) {
+                executorService.shutdown();
+            }
+        }
+
+        /*if (MainActivity.educationHolderArrayList != null && MainActivity.educationHolderArrayList.size() > 0) {
+            educationHolderArrayList = MainActivity.educationHolderArrayList;
+        } else {
+            new Thread() {
+                @Override
+                public void run() {
+                    educationHolderArrayList.addAll(CommonUtils.addEducData(educationHolderArrayList));
+                }
+            }.start();
+        }*/
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //educationHolderArrayList.clear();
     }
 
     @Override
@@ -57,7 +89,11 @@ public class SingleCatActivity extends AppCompatActivity {
         @NonNull
         @Override
         public Fragment getItem(int position) {
-            return fragmentPair.get(position).second;
+            Bundle bundle = new Bundle();
+            Fragment f = fragmentPair.get(position).second;
+            bundle.putInt("index", position);
+            f.setArguments(bundle);
+            return f;
         }
 
         @Override
