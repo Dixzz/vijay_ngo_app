@@ -13,18 +13,31 @@
             android:background="?android:attr/colorBackground">
 
             <com.google.android.material.appbar.MaterialToolbar
-                app:titleTextAppearance="@style/tabTitle2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:title="Categories" />
+                app:title="Categories"
+                app:titleTextAppearance="@style/tabTitle2" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_cat"
             android:layout_width="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_baseline_star_24"
+            android:tint="@color/white"
+            android:backgroundTint="@color/white"
+            app:backgroundTint="@color/colorAccent"
+            app:fabSize="mini"
+            app:layout_anchor="@id/recycler_cat"
+            app:layout_anchorGravity="end|bottom" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

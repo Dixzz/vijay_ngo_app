@@ -1,2 +1,4 @@
 include ':app'
 rootProject.name = "Dummy"
+include ':lib'
+include ':annotations-names'
